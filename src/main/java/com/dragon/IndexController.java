@@ -8,7 +8,6 @@ public class IndexController {
 
     @RequestMapping("index")
     public String goIndex(){
-        System.out.println("================");
         return "index";
     }
 }

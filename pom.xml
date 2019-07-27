@@ -69,6 +69,7 @@
                         <include>**/*.html</include>
                         <include>**/*.css</include>
                         <include>**/*.js</include>
+                        <include>**/**</include>
                     </includes>
                 </resource>
             </resources>
