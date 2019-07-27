@@ -1,11 +1,14 @@
-package com.dragon;
+package com.dragon.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+/**
+ * @Author: 龙万恒
+ * @CreateTime: 2019-07-27 23:30
+ */
+@RestController
 public class IndexController {
     public static final Logger LOGGER = LoggerFactory.getLogger(IndexController.class);
 
