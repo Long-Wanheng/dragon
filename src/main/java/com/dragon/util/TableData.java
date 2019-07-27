@@ -1,6 +1,5 @@
 package com.dragon.util;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -10,14 +9,6 @@ import java.util.List;
  * @CreateTime: 2019-07-27 23:30
  */
 public class TableData<T> {
-    /**
-     * 状态码 默认1
-     */
-    private int code = 1;
-    /**
-     * 信息
-     */
-    private String message = "success";
     /**
      * 总条数
      */
@@ -33,23 +24,8 @@ public class TableData<T> {
     /**
      * 数据
      */
-    private List<T> data = new ArrayList<>();
+    private List<T> data;
 
-    public int getCode() {
-        return code;
-    }
-
-    public void setCode(int code) {
-        this.code = code;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
 
     public Long getCount() {
         return count;
