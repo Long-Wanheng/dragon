@@ -15,6 +15,7 @@ public class UserUtils {
      * 保证每个线程有独立用户属性
      */
     private static ThreadLocal<User> currentUser = new ThreadLocal<User>();
+    private static ThreadLocal<String> currentToken = new ThreadLocal<String>();
 
     public static void setCurrentUser(User user) {
         currentUser.set(user);
@@ -24,7 +25,17 @@ public class UserUtils {
         return Optional.of(currentUser.get());
     }
 
+    public static void setCurrentToken(String token){
+        currentToken.set(token);
+    }
+
+    public static Optional<String> getCurrentToken(){
+        return Optional.of(currentToken.get());
+    }
+
     public static void remove() {
         currentUser.remove();
+        currentToken.remove();
+
     }
 }
