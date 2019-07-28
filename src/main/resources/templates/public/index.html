@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>个人博客 — 一个站在java开发之路上的草根程序员个人博客网站</title>
+    <title>博客 — 一个站在java开发之路上的草根程序员个人博客网站</title>
     <meta charset="utf-8">
     <meta name="renderer" content="webkit|ie-comp|ie-stand">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,10 +10,10 @@
     <meta http-equiv="Cache-Control" content="no-siteapp"/>
     <meta name="keywords" content="个人博客,龙先生个人博客,个人博客系统">
     <meta name="description" content="一个站在java开发之路上的草根程序员个人博客网站。">
-    <LINK rel="Bookmark" href="/static/favicon.ico">
+    <LINK rel="Bookmark" href="/static/favicon.ico"th:href="@{../static/favicon.ico}">
     <LINK rel="Shortcut Icon" href="/static/favicon.ico"/>
     <!--[if lt IE 9]>
-    <script type="text/javascript" src="/static/staticRes/js/html5shiv.js"></script>
+    <script type="text/javascript" src="../static/staticRes/js/html5shiv.js"></script>
     <script type="text/javascript" src="/static/staticRes/js/respond.min.js"></script>
     <![endif]-->
     <link rel="stylesheet" type="text/css" href="/static/plugin/h-ui/css/H-ui.min.css"/>
@@ -40,7 +40,7 @@
     <div class="navbar navbar-fixed-top">
         <div class="container cl">
             <a class="navbar-logo hidden-xs" href="index.html">
-                <img class="logo" src="/static/img/logo.png" alt="Lao王博客"/>
+                <img class="logo" src="/static/img/logo.png" th:src="@{/static/img/logo.png}" alt="Lao王博客"/>
             </a>
             <a class="logo navbar-logo-m visible-xs" href="index.html">Lao王博客</a>
             <a aria-hidden="false" class="nav-toggle Hui-iconfont visible-xs" href="javascript:void(0);"
