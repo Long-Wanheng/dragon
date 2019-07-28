@@ -15,7 +15,7 @@ public class IndexController {
     public static final Logger LOGGER = LoggerFactory.getLogger(IndexController.class);
 
     @PostMapping("")
-    public ResultSet init(){
+    public ResultSet init() {
         return ResultSet.view(null);
     }
 }
