@@ -4,6 +4,7 @@ import com.dragon.util.ResultSet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -14,8 +15,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class IndexController {
     public static final Logger LOGGER = LoggerFactory.getLogger(IndexController.class);
 
-    @PostMapping("")
+    @PostMapping("indexs")
     public ResultSet init() {
         return ResultSet.view(null);
+    }
+
+    @RequestMapping("index")
+    public String index(){
+        return "index";
     }
 }
