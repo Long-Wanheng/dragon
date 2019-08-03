@@ -35,5 +35,4 @@ public class WelcomeConfig extends WebMvcConfigurationSupport {
         super.addResourceHandlers(registry);
     }
 
-
 }
