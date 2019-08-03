@@ -51,7 +51,7 @@ public enum ExceptionEnum {
         this.resultCode = resultCode;
     }
 
-    public Class<? extends DragonException> getEClass() {
+    public Class<? extends DragonException> getClazz() {
         return eClass;
     }
 
@@ -97,7 +97,7 @@ public enum ExceptionEnum {
         return null;
     }
 
-    public static ExceptionEnum getByEClass(Class<? extends DragonException> eClass) {
+    public static ExceptionEnum getByClazz(Class<? extends DragonException> eClass) {
         if (eClass == null) {
             return null;
         }

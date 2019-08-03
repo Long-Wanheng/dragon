@@ -39,8 +39,8 @@ public class MailSendConfig {
     /**
      * 邮件标题
      */
-    private String SUBJECT = "手表服务抛异常了";
-    private String[] TOS = new String[]{"993111960@qq.com"};
+    private String subject = "手表服务抛异常了";
+    private String[] tos = new String[]{"993111960@qq.com"};
 
     /**
      * 发送邮件
@@ -61,15 +61,15 @@ public class MailSendConfig {
             // 加载发件人地址
             message.setFrom(new InternetAddress(fromMailAddress));
             // 加载收件人地址
-            InternetAddress[] sendTo = new InternetAddress[TOS.length];
-            for (int i = 0; i < TOS.length; i++) {
-                sendTo[i] = new InternetAddress(TOS[i]);
+            InternetAddress[] sendTo = new InternetAddress[tos.length];
+            for (int i = 0; i < tos.length; i++) {
+                sendTo[i] = new InternetAddress(tos[i]);
             }
             message.addRecipients(Message.RecipientType.TO, sendTo);
             //设置在发送给收信人之前给自己（发送方）抄送一份，不然会被当成垃圾邮件，报554错
             message.addRecipients(MimeMessage.RecipientType.CC, InternetAddress.parse(fromMailAddress));
             //加载标题
-            message.setSubject(SUBJECT);
+            message.setSubject(subject);
             //向multipart对象中添加邮件的各个部分内容，包括文本内容和附件
             Multipart multipart = new MimeMultipart();
             //设置邮件的文本内容
