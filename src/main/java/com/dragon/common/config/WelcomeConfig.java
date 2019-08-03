@@ -1,4 +1,4 @@
-package com.dragon.common;
+package com.dragon.common.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
