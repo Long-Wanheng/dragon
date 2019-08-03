@@ -35,7 +35,8 @@ public class SeleniumCloudMusic {
 
         //driver.findElement(By.id("kw")).sendKeys("Java");
         //这里的路径问题?
-        List<WebElement> iframes = driver.findElements(By.xpath(".//*[@id='comment-box']/div[1]/div[2]/div[2]/div[1]/div[1]/a"));
+        //List<WebElement> iframes = driver.findElements(By.xpath(".//*[@id='comment-box']/div[1]/div[2]/div[2]/div[1]/div[1]/a"));
+        List<WebElement> iframes = driver.findElements(By.xpath("//div[@class='head']"));
         for (WebElement iframe : iframes) {
             LOGGER.info("============");
             System.out.println(iframe.getAttribute("href"));
