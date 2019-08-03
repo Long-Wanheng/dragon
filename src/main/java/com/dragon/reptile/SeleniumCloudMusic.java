@@ -15,6 +15,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class SeleniumCloudMusic {
     public static final Logger LOGGER = LoggerFactory.getLogger(SeleniumCloudMusic.class);
@@ -26,35 +27,38 @@ public class SeleniumCloudMusic {
         System.setProperty(key, value);
 
         WebDriver driver = new ChromeDriver();
+
+        driver.manage().window().maximize();
+
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         driver.get("https://music.163.com/#/song?id=1321020935");
 
-        WebElement iframe = driver.findElement(By.className("cmmts j-flag"));
-        driver.switchTo().frame(iframe);
-
-        List<WebElement> elements = driver.findElements(By.xpath("//div[@class='u-cover u-cover-1']"));
-        List<String> playLists = new ArrayList<String>();
-
-        for (WebElement webElement : elements) {
-            webElement.findElement(By.tagName("div"));
-            WebElement node = webElement.findElement(By.tagName("a"));
-            String url = node.getAttribute("href");
-
-            System.out.println(url);
-            playLists.add(url);
-
-        }
-
-        for (String str : playLists) {
-
-
-            driver.get(str);
-            WebElement ifra = driver.findElement(By.className("s-fc7"));
-            driver.switchTo().frame(ifra);
-
-            WebElement subject = driver.findElement(By.tagName("a"));
-
-            System.out.println(subject.getText());
-            LOGGER.info("获取到的参数为: {}"+subject.getText());
+        //driver.findElement(By.id("kw")).sendKeys("Java");
+        //这里的路径问题?
+        List<WebElement> iframes = driver.findElements(By.xpath(".//*[@id='comment-box']/div[1]/div[2]/div[2]/div[1]/div[1]/a"));
+        for (WebElement iframe : iframes) {
+            LOGGER.info("============");
+            System.out.println(iframe.getAttribute("href"));
+            driver.switchTo().frame(iframe);
+//            List<WebElement> elements = driver.findElements(By.xpath(".//div[@class='head']"));
+//            List<String> playLists = new ArrayList<String>();
+//
+//            for (WebElement webElement : elements) {
+//                webElement.findElement(By.tagName("div"));
+//                WebElement node = webElement.findElement(By.tagName("a"));
+//                String url = node.getAttribute("href");
+//                System.out.println(url);
+//                playLists.add(url);
+//            }
+//
+//            for (String str : playLists) {
+//                driver.get(str);
+//                WebElement ifra = driver.findElement(By.className("s-fc7"));
+//                driver.switchTo().frame(ifra);
+//                WebElement subject = driver.findElement(By.tagName("a"));
+//                System.out.println(subject.getText());
+//                LOGGER.info("获取到的参数为: {}" + subject.getText());
+//            }
         }
     }
 }
