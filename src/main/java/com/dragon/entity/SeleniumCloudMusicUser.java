@@ -8,32 +8,36 @@ package com.dragon.entity;
  */
 public class SeleniumCloudMusicUser {
     /**
+     * 主键id
+     */
+    private Long id;
+    /**
      * 网易云用户id
      */
-    private String id;
+    private String musicId;
     /**
      * 网易云用户昵称
      */
-    private String nickName;
+    private String musicNickName;
     /**
      * 网易云用户主页
      */
     private String userUrl;
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public String getNickName() {
-        return nickName;
+    public String getMusicNickName() {
+        return musicNickName;
     }
 
-    public void setNickName(String nickName) {
-        this.nickName = nickName;
+    public void setNickName(String musicNickName) {
+        this.musicNickName = musicNickName;
     }
 
     public String getUserUrl() {
@@ -42,5 +46,13 @@ public class SeleniumCloudMusicUser {
 
     public void setUserUrl(String userUrl) {
         this.userUrl = userUrl;
+    }
+
+    public String getMusicId() {
+        return musicId;
+    }
+
+    public void setMusicId(String musicId) {
+        this.musicId = musicId;
     }
 }

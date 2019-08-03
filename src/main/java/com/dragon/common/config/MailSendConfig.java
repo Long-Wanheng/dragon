@@ -44,7 +44,7 @@ public class MailSendConfig {
     @Value("${mail.authorization.key}")
     private String mailAuthorizationKey;
 
-    private String[] tos = new String[]{"243027528@qq.com"};
+    //private String[] tos = new String[]{"243027528@qq.com"};
 
     private static final String MAIL_SMTP_HOST = "mail.smtp.host";
 

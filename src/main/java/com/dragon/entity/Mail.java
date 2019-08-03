@@ -1,6 +1,8 @@
 package com.dragon.entity;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -39,6 +41,10 @@ public class Mail {
      * 邮件状态
      */
     private Integer status = SENDING;
+    /**
+     * 创建时间
+     */
+    private Timestamp createdTime;
 
     public static final Integer SENDING = 0;
     public static final Integer SEND_SUCCESS = 1;
@@ -99,5 +105,13 @@ public class Mail {
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public Date getCreatedTime() {
+        return createdTime;
+    }
+
+    public void setCreatedTime(Timestamp createdTime) {
+        this.createdTime = createdTime;
     }
 }
