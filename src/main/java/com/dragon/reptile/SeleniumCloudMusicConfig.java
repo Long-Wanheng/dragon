@@ -19,9 +19,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SeleniumCloudMusicConfig {
-    @Value("${chrome-driver-path}")
+    @Value("${chrome.driver.path}")
     private  String chromeDriverPath;
-    @Value("${chrome-driver-key}")
+    @Value("${chrome.driver.key}")
     private String chromeDriverKey;
     public static final Logger LOGGER = LoggerFactory.getLogger(SeleniumCloudMusicConfig.class);
 
