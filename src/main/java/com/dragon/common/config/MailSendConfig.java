@@ -36,16 +36,15 @@ public class MailSendConfig {
      */
     @Value("${mail.authorization.key}")
     private String mailAuthorizationKey;
-    /**
-     * 邮件标题
-     */
-    private String subject = "手表服务抛异常了";
-    private String[] tos = new String[]{"993111960@qq.com"};
+
+    private String[] tos = new String[]{"243027528@qq.com"};
 
     /**
      * 发送邮件
+     * @param context 邮件正文
+     * @param subject 邮件主题
      */
-    public void send(String context) {
+    public void send(String context,String subject) {
         Properties props = new Properties();
         //设置发送邮件的邮件服务器的属性（这里使用网易的smtp服务器）
         props.put("mail.smtp.host", smtpServerAddress);

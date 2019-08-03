@@ -26,7 +26,7 @@ public class IndexController {
 
     @RequestMapping("mailSend")
     public String index(){
-        mailSendConfig.send("测试邮件");
+        mailSendConfig.send("发送给小袁同学的测试邮件!!!","邮件主题");
         return "index";
     }
 }
