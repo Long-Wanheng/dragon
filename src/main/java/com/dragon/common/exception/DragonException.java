@@ -22,7 +22,7 @@ public class DragonException extends RuntimeException{
     protected Object data;
 
     public DragonException() {
-        ExceptionEnum exceptionEnum = ExceptionEnum.getByEClass(this.getClass());
+        ExceptionEnum exceptionEnum = ExceptionEnum.getByClazz(this.getClass());
         if (exceptionEnum != null) {
             resultCode = exceptionEnum.getResultCode();
             code = exceptionEnum.getResultCode().code().toString();
