@@ -36,6 +36,5 @@ public class UserUtils {
     public static void remove() {
         currentUser.remove();
         currentToken.remove();
-
     }
 }
