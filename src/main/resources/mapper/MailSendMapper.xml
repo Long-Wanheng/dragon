@@ -16,8 +16,8 @@
     <insert id="add" parameterType="Mail">
         INSERT INTO mail_send(title,context,to_mail,cc_mail,status,created_time)
         VALUES (#{title},#{context},
-            #{toMail},
-            #{ccMail}
+            #{toMailStr},
+            #{ccMailStr},
         #{status},now())
     </insert>
 </mapper>
