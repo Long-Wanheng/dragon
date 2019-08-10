@@ -1,6 +1,6 @@
 package com.dragon.dao;
 
-import com.dragon.entity.MailTemplate;
+import com.dragon.model.entity.MailTemplate;
 import org.apache.ibatis.annotations.Param;
 
 /**

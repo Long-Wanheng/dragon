@@ -10,7 +10,7 @@
         <result column="context" property="context" jdbcType="LONGVARCHAR"/>
     </resultMap>
 
-    <select id="getMailTemplateByName" parameterType="java.lang.String">
+    <select id="getMailTemplateByName" parameterType="java.lang.String" resultType="MailTemplate">
         SELECT id,name,title,context,is_delete FROM mail_template WHERE name=#{name}
     </select>
 </mapper>

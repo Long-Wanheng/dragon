@@ -1,6 +1,7 @@
 package com.dragon.dao;
 
-import com.dragon.entity.Mail;
+import com.dragon.model.entity.Mail;
+import com.dragon.model.entity.MailSendLog;
 import org.apache.ibatis.annotations.Param;
 
 /**
@@ -8,12 +9,12 @@ import org.apache.ibatis.annotations.Param;
  * @CreateTime: 2019-08-04 01:54
  * @Description: ${Description}
  */
-public interface MailSendDAO {
+public interface MailSendLogDAO {
     /**
      * 邮件发送记录添加
      *
-     * @param mail
+     * @param mailSendLog
      * @return int
      */
-    int add(Mail mail, @Param("toMailStr") String toMaimStr, @Param("ccMailStr") String ccMailStr);
+    int add(MailSendLog mailSendLog);
 }

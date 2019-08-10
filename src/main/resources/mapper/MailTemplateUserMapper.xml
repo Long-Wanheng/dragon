@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dragon.dao.MailTemplateUserDAO">
+
+    <select id="findUsersByTemplateId"  resultType="java.lang.String">
+        SELECT
+        u.email
+        FROM USER u INNER JOIN mail_template_user tu ON u.id=tu.`user_id`
+        INNER JOIN mail_template t ON tu.`template_id`=t.id
+        <where>
+            t.id=#{id} and tu.send_type = #{type}
+        </where>
+    </select>
+</mapper>

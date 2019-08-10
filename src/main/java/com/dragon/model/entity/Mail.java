@@ -1,4 +1,4 @@
-package com.dragon.entity;
+package com.dragon.model.entity;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -49,6 +49,7 @@ public class Mail {
     public static final Integer SENDING = 0;
     public static final Integer SEND_SUCCESS = 1;
     public static final Integer SEND_FAILURE = 2;
+
 
     public Long getId() {
         return id;

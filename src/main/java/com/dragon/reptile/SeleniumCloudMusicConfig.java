@@ -2,7 +2,7 @@ package com.dragon.reptile;
 
 
 import com.dragon.common.exception.DragonException;
-import com.dragon.entity.SeleniumCloudMusicUser;
+import com.dragon.model.entity.SeleniumCloudMusicUser;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

@@ -1,4 +1,4 @@
-package com.dragon.entity;
+package com.dragon.model.entity;
 
 /**
  * 网易云用户实体类

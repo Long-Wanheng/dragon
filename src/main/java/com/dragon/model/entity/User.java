@@ -1,4 +1,4 @@
-package com.dragon.entity;
+package com.dragon.model.entity;
 
 /**
  * 用户实体类

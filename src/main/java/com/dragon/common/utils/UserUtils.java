@@ -1,6 +1,6 @@
 package com.dragon.common.utils;
 
-import com.dragon.entity.User;
+import com.dragon.model.entity.User;
 
 import java.util.Optional;
 

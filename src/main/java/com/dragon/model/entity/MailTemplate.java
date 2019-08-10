@@ -1,4 +1,4 @@
-package com.dragon.entity;
+package com.dragon.model.entity;
 
 /**
  * 邮件模板实体类
