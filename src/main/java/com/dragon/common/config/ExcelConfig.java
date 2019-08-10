@@ -26,17 +26,23 @@ public class ExcelConfig {
         //创建多行
         //创建第一行，设置列名
         HSSFRow row0 = sheet.createRow(0);
-        for (int cellIndex = 0; cellIndex < 8; cellIndex++) {
+        for (int cellIndex = 0; cellIndex < 3; cellIndex++) {
             HSSFCell cell = row0.createCell(cellIndex);
             switch (cellIndex) {
                 case 0:
                     cell.setCellValue("URL");
+                    //调整第一列宽度
+                    sheet.autoSizeColumn((short)0);
                     break;
                 case 1:
                     cell.setCellValue("昵称");
+                    //调整第二列宽度
+                    sheet.autoSizeColumn((short)1);
                     break;
                 case 2:
                     cell.setCellValue("用户id");
+                    //调整第三列宽度
+                    sheet.autoSizeColumn((short)2);
                     break;
                 default:
                     break;

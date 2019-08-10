@@ -41,7 +41,7 @@ public class SeleniumCloudMusicServiceImpl implements SeleniumCloudMusicService 
     @Override
     public int reptileMusicUsers(String songId) {
         List<SeleniumCloudMusicUser> userList = musicConfig.getSeleniumCloudMusicUserInfo(songId);
-        String excelName = DateUtils.currentDateString("yyyy-MM-dd HH:mm:ss") + "get data and music is: " + songId;
+        String excelName = DateUtils.currentDateString("yyyy-MM-dd HH-mm-ss") + "get data and music is-" + songId;
         String path = excelConfig.writeExcel(userList, excelName);
         MailTemplate template = mailTemplateDAO.getMailTemplateByName("网易云音乐用户爬虫邮件");
         Mail mail = new Mail();
