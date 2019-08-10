@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dragon.dao.MusicUserDAO">
+    <insert id="batchAdd" parameterType="java.util.List">
+        INSERT INTO music_user(
+        music_id,
+        music_nick_name,
+        user_url)VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.musicId},#{item.musicNickName},#{item.userUrl})
+        </foreach>
+    </insert>
+</mapper>

@@ -9,15 +9,21 @@ import com.dragon.model.entity.Mail;
 public interface MailSendService {
     /**
      * 邮件发送记录添加
+     *
      * @param mail
      * @param status
      * @return int
      */
-    int recordingMailSend(Mail mail,Integer status);
+    int recordingMailSend(Mail mail, Integer status);
+
     /**
      * 邮件发送服务
+     *
      * @param mail
+     * @param path
+     * @param excelName
+     * @param flag
      * @return boolean
      */
-    boolean sendMail(Mail mail);
+    boolean sendMail(Mail mail, String path, String excelName, boolean flag);
 }

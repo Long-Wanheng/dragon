@@ -50,10 +50,10 @@ public class MailSendServiceImpl implements MailSendService {
     }
 
     @Override
-    public boolean sendMail(Mail mail) {
+    public boolean sendMail(Mail mail, String path, String excelName, boolean flag) {
         verificationMail(mail);
         try {
-            boolean success = mailSendConfig.send(mail);
+            boolean success = mailSendConfig.send(mail, path, excelName, flag);
             if (!success) {
                 recordingMailSend(mail, Mail.SEND_FAILURE);
                 return false;

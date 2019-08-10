@@ -1,4 +1,4 @@
-package com.dragon.reptile;
+package com.dragon.common.config;
 
 
 import com.dragon.common.exception.DragonException;
@@ -15,6 +15,7 @@ import org.springframework.context.annotation.Configuration;
 
 import java.util.ArrayList;
 import java.util.List;
+
 /**
  * 网易云爬虫工具类
  *
@@ -61,6 +62,7 @@ public class SeleniumCloudMusicConfig {
             String url = node.getAttribute("href");
             SeleniumCloudMusicUser user = new SeleniumCloudMusicUser();
             user.setUserUrl(url);
+            user.setMusicId(url.substring(MUSIC_URL.length()));
             userList.add(user);
         }
         for (SeleniumCloudMusicUser user : userList) {

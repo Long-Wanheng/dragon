@@ -7,11 +7,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 
+import javax.activation.DataHandler;
+import javax.activation.FileDataSource;
 import javax.mail.*;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeBodyPart;
-import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeMultipart;
+import javax.mail.internet.*;
 import java.util.List;
 import java.util.Properties;
 
@@ -55,7 +54,7 @@ public class MailSendConfig {
      *
      * @param mail 邮件实体类
      */
-    public boolean send(Mail mail) {
+    public boolean send(Mail mail, String path, String excelName, boolean flag) {
         Properties props = new Properties();
         //设置发送邮件的邮件服务器的属性（这里使用网易的smtp服务器）
         props.put(MAIL_SMTP_HOST, smtpServerAddress);
@@ -89,7 +88,15 @@ public class MailSendConfig {
             //设置邮件的文本内容
             BodyPart contentPart = new MimeBodyPart();
             contentPart.setText(mail.getContext());
+            if (flag) {
+                //附件
+                MimeBodyPart attach2 = new MimeBodyPart();
+                attach2.setDataHandler(new DataHandler(new FileDataSource(path)));
+                attach2.setFileName(MimeUtility.encodeText(excelName + ".xls"));
+                multipart.addBodyPart(attach2);
+            }
             multipart.addBodyPart(contentPart);
+
             //将multipart对象放到message中
             message.setContent(multipart);
             //保存邮件
