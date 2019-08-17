@@ -15,4 +15,12 @@ public interface MenuService {
      * @return 菜单树
      */
     List<Menu> getMenuTree();
+
+    /**
+     * 根据用户id获取用户菜单
+     *
+     * @param userId
+     * @return 用户菜单
+     */
+    List<Menu> getUserMenuByUserId(Long userId);
 }

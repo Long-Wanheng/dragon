@@ -10,7 +10,7 @@
         <result column="context" property="context" jdbcType="LONGVARCHAR"/>
     </resultMap>
 
-    <select id="getMailTemplateByName" parameterType="java.lang.String" resultType="MailTemplate">
+    <select id="getMailTemplateByName" parameterType="java.lang.String" resultType="com.dragon.model.entity.MailTemplate">
         SELECT id,name,title,context,is_delete FROM dragon_mail_template WHERE name=#{name}
     </select>
 </mapper>

@@ -52,6 +52,6 @@ public class MyShiroRealm extends AuthorizingRealm {
             return null;
         }
         //此处返回的对象中的principal 不再是单纯的用户的id，而是用户对象，因为后面在序列化到redis中的时候会调用该对象的getId方法，如果返回id 没有那个方法
-        return new SimpleAuthenticationInfo(user, user.getPassword(), super.getName());
+        return new SimpleAuthenticationInfo(user, token.getPassword(), super.getName());
     }
 }

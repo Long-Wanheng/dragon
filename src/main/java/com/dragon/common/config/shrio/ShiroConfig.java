@@ -27,7 +27,7 @@ public class ShiroConfig {
     @Bean
     public JedisPool jedisPool() {
         JedisPoolConfig config = new JedisPoolConfig();
-        JedisPool jedisPool = new JedisPool(config, "10.9.63.181", 6379, 30000, "123456");
+        JedisPool jedisPool = new JedisPool(config, "192.168.1.104", 6379, 30000, "123456");
         return jedisPool;
     }
 
@@ -82,11 +82,11 @@ public class ShiroConfig {
     public MyShiroFilterFactoryBean shiroFilter(MenuDAO menuDAO, SecurityManager securityManager) {
         MyShiroFilterFactoryBean factoryBean = new MyShiroFilterFactoryBean();
         factoryBean.setSecurityManager(securityManager);
-        factoryBean.setLoginUrl("/login.html");
-        factoryBean.setSuccessUrl("/index.html");
+        factoryBean.setLoginUrl("/login");
+        factoryBean.setSuccessUrl("/index");
         factoryBean.setUnauthorizedUrl("/auth_error.html");
         factoryBean.setMenuDAO(menuDAO);
-        factoryBean.setFilterChainDefinitions("/login = anon\n/static/** = anon");
+        factoryBean.setFilterChainDefinitions("/login = anon\n/doLogin = anon\n/static/** = anon");
         Map<String, Filter> map = Maps.newHashMap();
         map.put("roles", new MyShiroFilter());
         factoryBean.setFilters(map);

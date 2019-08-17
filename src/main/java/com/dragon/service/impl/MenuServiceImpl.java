@@ -43,4 +43,10 @@ public class MenuServiceImpl implements MenuService {
         }
         return firstMenu;
     }
+
+    @Override
+    public List<Menu> getUserMenuByUserId(Long userId) {
+        List<Menu> menus = menuDAO.getUserMenuByUserId(userId);
+        return makeMenuTree(menus);
+    }
 }

@@ -8,9 +8,4 @@ import java.util.List;
  */
 public interface RoleDAO {
 
-    /**
-     * 获取所有角色id
-     * @return 角色id
-     */
-    List<Integer> getAllRoleIds();
 }

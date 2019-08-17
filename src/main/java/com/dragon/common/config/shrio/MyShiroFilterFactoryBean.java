@@ -32,8 +32,6 @@ public class MyShiroFilterFactoryBean extends ShiroFilterFactoryBean {
     public static final String ROLE_STRING = "roles[{0}]";
     private static String filterChainDefinitions;
 
-    @Autowired
-    private RoleMenuDAO roleMenuDAO;
 
     private MenuDAO menuDAO;
 
@@ -52,7 +50,7 @@ public class MyShiroFilterFactoryBean extends ShiroFilterFactoryBean {
         }
 
         List<Menu> menus = menuDAO.getAllMenu();
-        List<RoleMenu> roleMenus = roleMenuDAO.queryByMenuIds(menus);
+        List<RoleMenu> roleMenus = menuDAO.queryByMenuIds(menus);
         Map<Long, String> roleMenusMap = Maps.newConcurrentMap();
         //menu作为key,拼接String类型roleIds
         roleMenus.forEach(roleMenu -> {

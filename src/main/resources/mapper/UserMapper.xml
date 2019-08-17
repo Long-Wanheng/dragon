@@ -14,8 +14,8 @@
         <result column="created_time" property="createdTime" jdbcType="TIMESTAMP"/>
     </resultMap>
     <sql id="baseSQL">
-      SELECT id,nick_name,real_name,phone_number,email,password,private_key
-      created_time FROM dragon_user
+      SELECT id,nick_name,real_name,phone_number,email,password,private_key,
+      create_time FROM dragon_user
     </sql>
 
     <select id="queryLoginUserByNickName" parameterType="java.lang.String" resultMap="baseMap">
@@ -30,5 +30,7 @@
         <include refid="baseSQL"/>
         WHERE phone = #{phone}
     </select>
-
+    <select id="queryRoleIdsByUserId" parameterType="java.lang.Long" resultType="java.lang.Long">
+        SELECT ROLE_ID FROM `dragon_user_role`  WHERE user_id=#{userId}
+    </select>
 </mapper>

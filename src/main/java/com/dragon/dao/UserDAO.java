@@ -1,5 +1,6 @@
 package com.dragon.dao;
 
+import com.dragon.model.entity.Menu;
 import com.dragon.model.entity.User;
 import org.apache.ibatis.annotations.Param;
 
@@ -44,4 +45,5 @@ public interface UserDAO {
      * @return 用户权限
      */
     List<Integer> queryRoleIdsByUserId(@Param("userId") Long userId);
+
 }

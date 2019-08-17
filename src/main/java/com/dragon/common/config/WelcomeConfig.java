@@ -16,7 +16,7 @@ public class WelcomeConfig extends WebMvcConfigurationSupport {
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         //默认访问页面
-        registry.addViewController("/").setViewName("index");
+        registry.addViewController("/").setViewName("login");
         //最先执行过滤
         registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
         super.addViewControllers(registry);

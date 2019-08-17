@@ -13,7 +13,7 @@
         <result column="created_time" property="createdTime" jdbcType="TIMESTAMP"/>
     </resultMap>
 
-    <insert id="add" parameterType="MailSendLog" useGeneratedKeys="true" keyProperty="id">
+    <insert id="add" parameterType="com.dragon.model.entity.MailSendLog" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO dragon_mail_send_log(title,context,to_mail,cc_mail,status,created_time)
         VALUES (#{title},#{context},
             #{toMail},

@@ -15,9 +15,10 @@ public interface UserService {
      * 根据参数获取登录用户
      *
      * @param loginParam
+     * @param password
      * @return 登录用户
      */
-    User getLoginUser(String loginParam,String password);
+    User getLoginUser(String loginParam, String password);
 
     /**
      * 根据用户id查询角色
@@ -26,4 +27,5 @@ public interface UserService {
      * @return 用户权限
      */
     List<Integer> queryRoleIdsByUserId(@Param("userId") Long userId);
+
 }
