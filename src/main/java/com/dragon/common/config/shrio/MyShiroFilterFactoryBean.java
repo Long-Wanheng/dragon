@@ -1,7 +1,7 @@
 package com.dragon.common.config.shrio;
 
-import com.test.sdk.admin.dao.MenuDAO;
-import com.test.sdk.admin.pojo.Menu;
+import com.dragon.dao.MenuDAO;
+import com.dragon.model.entity.Menu;
 import org.apache.shiro.config.Ini;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.util.CollectionUtils;
@@ -9,14 +9,19 @@ import org.apache.shiro.util.StringUtils;
 import org.apache.shiro.web.filter.mgt.DefaultFilterChainManager;
 import org.apache.shiro.web.filter.mgt.PathMatchingFilterChainResolver;
 import org.apache.shiro.web.servlet.AbstractShiroFilter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.text.MessageFormat;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-
+/**
+ * @Author: 龙万恒
+ * @CreateTime: 2019-08-17 20:22
+ */
 public class MyShiroFilterFactoryBean extends ShiroFilterFactoryBean {
-
+    private static final Logger LOGGER = LoggerFactory.getLogger(MyShiroFilterFactoryBean.class);
     public static final String ROLE_STRING = "roles[{0}]";
     private MenuDAO menuDAO;
 
@@ -25,9 +30,10 @@ public class MyShiroFilterFactoryBean extends ShiroFilterFactoryBean {
     }
 
     private static String filterChainDefinitions;
+
     @Override
     public void setFilterChainDefinitions(String definitions) {
-        filterChainDefinitions=definitions;
+        filterChainDefinitions = definitions;
         Ini ini = new Ini();
         ini.load(definitions);
         Ini.Section section = ini.getSection("urls");
@@ -35,23 +41,21 @@ public class MyShiroFilterFactoryBean extends ShiroFilterFactoryBean {
             section = ini.getSection("");
         }
 
-        List<Menu> menus=menuDAO.getAllMenu();
+        List<Menu> menus = menuDAO.getAllMenu();
         for (Menu menu : menus) {
-            if(StringUtils.hasText(menu.getUrl())){//如果地址不等于空
-                //把菜单对应的角色id存到shiro中
-                //  index.html=roles[1,2,3]
-                List<Integer> roleIds=menuDAO.getMenuRoleId(menu.getId());//可以访问当前菜单的角色id
-                StringBuilder builder=new StringBuilder();
-                if(roleIds!=null&&roleIds.size()>0){
+            if (StringUtils.hasText(menu.getMenuUrl())) {
+                List<Integer> roleIds = menuDAO.queryRoleIdsByMenuId(menu.getId());
+                StringBuilder builder = new StringBuilder();
+                if (roleIds != null && roleIds.size() > 0) {
                     for (Integer roleId : roleIds) {
                         builder.append(roleId).append(",");
                     }
-                    String str=builder.substring(0,builder.length()-1);//最后一个逗号去掉
-                    section.put(menu.getUrl(), MessageFormat.format(ROLE_STRING, str));
+                    String str = builder.substring(0, builder.length() - 1);
+                    section.put(menu.getMenuUrl(), MessageFormat.format(ROLE_STRING, str));
                 }
             }
         }
-        section.put("/**","authc");//放在最后，其它的地址只要登陆了就能访问
+        section.put("/**", "authc");
         this.setFilterChainDefinitionMap(section);
     }
 
@@ -68,7 +72,6 @@ public class MyShiroFilterFactoryBean extends ShiroFilterFactoryBean {
 
             // 重新设置权限
             this.setFilterChainDefinitions(filterChainDefinitions);
-
 
             Map<String, String> chains = this.getFilterChainDefinitionMap();
             if (!CollectionUtils.isEmpty(chains)) {

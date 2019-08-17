@@ -1,7 +1,7 @@
 package com.dragon.common.config.shrio;
 
-import com.dragon.dao.UserDAO;
 import com.dragon.model.entity.User;
+import com.dragon.service.UserService;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
@@ -11,10 +11,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
+/**
+ * @Author: 龙万恒
+ * @CreateTime: 2019-08-17 20:22
+ */
 public class MyShiroRealm extends AuthorizingRealm {
 
     @Autowired
-    private UserDAO userDAO;
+    private UserService userService;
 
     /**
      * 请求一个资源的时候使用，比如访问某一个url
@@ -27,20 +31,20 @@ public class MyShiroRealm extends AuthorizingRealm {
 
         //因为认证方法返回的info对象的principal属性由原先的id变成了user对象，所以此处需要强转
         Integer userId = Integer.parseInt(((User) principalCollection.getPrimaryPrincipal()).getId().toString());
-        //查询出用所有的角色，交给shiro
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-        List<Integer> roleIds = userDAO.getUserRoleIds(userId);
-        for (Integer roleId : roleIds) {
+
+        List<Integer> roleIds = userService.queryRoleIdsByUserId((long) userId);
+        roleIds.forEach(roleId -> {
             info.addRole(roleId.toString());
-        }
+        });
         return info;
     }
 
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
         UsernamePasswordToken token = (UsernamePasswordToken) authenticationToken;
-        String email = token.getUsername();
-        User user = getUserRoleIds.getUserByEmail(email);
+        String params = token.getUsername();
+        User user = userService.getLoginUser(params);
         if (user == null) {
             return null;
         }

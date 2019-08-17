@@ -1,5 +1,7 @@
 package com.dragon.model.entity;
 
+import java.util.Date;
+
 /**
  * 用户实体类
  *
@@ -31,6 +33,15 @@ public class User {
      * 用户手机号
      */
     private String phoneNumber;
+    /**
+     * 用户私钥
+     */
+    private String privateKey;
+
+    /**
+     * 用户创建时间
+     */
+    private Date createTime;
 
     public Long getId() {
         return id;
@@ -78,5 +89,21 @@ public class User {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getPrivateKey() {
+        return privateKey;
+    }
+
+    public void setPrivateKey(String privateKey) {
+        this.privateKey = privateKey;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 }

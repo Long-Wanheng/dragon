@@ -22,8 +22,6 @@ import java.util.Map;
  */
 @Configuration
 public class ShiroConfig {
-    @Autowired
-    private MenuDAO menuDAO;
     /**
      * @return JedisPool
      */
@@ -89,7 +87,7 @@ public class ShiroConfig {
         factoryBean.setSuccessUrl("/index.html");
         factoryBean.setUnauthorizedUrl("/auth_error.html");
         factoryBean.setMenuDAO(menuDAO);
-        factoryBean.setFilterChainDefinitions("/login.html = anon\n/dologin.html = anon\n/static/** = anon");
+        factoryBean.setFilterChainDefinitions("/login = anon\n/static/** = anon");
         Map<String, Filter> map = Maps.newHashMap();
         map.put("roles", new MyShiroFilter());
         factoryBean.setFilters(map);
