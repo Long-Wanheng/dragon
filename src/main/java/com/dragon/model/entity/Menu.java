@@ -1,8 +1,10 @@
 package com.dragon.model.entity;
 
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 菜单实体类
@@ -16,6 +18,7 @@ public class Menu {
     private String menuUrl;
     private List<Menu> children = Lists.newArrayList();
     private Long parentId;
+    private Map<String, Object> attributes = Maps.newHashMap();
 
     public Long getId() {
         return id;
@@ -55,5 +58,17 @@ public class Menu {
 
     public void setParentId(Long parentId) {
         this.parentId = parentId;
+    }
+
+    public String getText() {
+        return menuName;
+    }
+
+    public Map<String, Object> getAttributes() {
+        return attributes;
+    }
+
+    public void setAttributes(Map<String, Object> attributes) {
+        this.attributes = attributes;
     }
 }

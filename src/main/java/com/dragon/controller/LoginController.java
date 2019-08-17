@@ -1,8 +1,8 @@
 package com.dragon.controller;
 
 import com.dragon.util.ResultSet;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
 
@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
  * @Author: 龙万恒
  * @CreateTime: 2019-08-17 20:07
  */
-@RestController
+@Controller
 public class LoginController {
 
     @RequestMapping()

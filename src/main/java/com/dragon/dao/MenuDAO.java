@@ -20,9 +20,12 @@ public interface MenuDAO {
     List<Menu> getAllMenu();
 
     /**
-     *根据菜单id获取角色id
+     * 根据菜单id获取角色id
+     *
      * @param menuId
      * @return 角色id
      */
-    List<Integer> queryRoleIdsByMenuId(@Param("menuId")Long menuId);
+    List<Integer> queryRoleIdsByMenuId(@Param("menuId") Long menuId);
+
+
 }

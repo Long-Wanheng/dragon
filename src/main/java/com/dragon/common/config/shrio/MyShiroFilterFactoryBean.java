@@ -1,7 +1,10 @@
 package com.dragon.common.config.shrio;
 
 import com.dragon.dao.MenuDAO;
+import com.dragon.dao.RoleMenuDAO;
 import com.dragon.model.entity.Menu;
+import com.dragon.model.entity.RoleMenu;
+import com.google.common.collect.Maps;
 import org.apache.shiro.config.Ini;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.util.CollectionUtils;
@@ -11,6 +14,7 @@ import org.apache.shiro.web.filter.mgt.PathMatchingFilterChainResolver;
 import org.apache.shiro.web.servlet.AbstractShiroFilter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.text.MessageFormat;
 import java.util.Iterator;
@@ -22,15 +26,20 @@ import java.util.Map;
  * @CreateTime: 2019-08-17 20:22
  */
 public class MyShiroFilterFactoryBean extends ShiroFilterFactoryBean {
+
     private static final Logger LOGGER = LoggerFactory.getLogger(MyShiroFilterFactoryBean.class);
+
     public static final String ROLE_STRING = "roles[{0}]";
+    private static String filterChainDefinitions;
+
+    @Autowired
+    private RoleMenuDAO roleMenuDAO;
+
     private MenuDAO menuDAO;
 
     public void setMenuDAO(MenuDAO menuDAO) {
         this.menuDAO = menuDAO;
     }
-
-    private static String filterChainDefinitions;
 
     @Override
     public void setFilterChainDefinitions(String definitions) {
@@ -43,15 +52,24 @@ public class MyShiroFilterFactoryBean extends ShiroFilterFactoryBean {
         }
 
         List<Menu> menus = menuDAO.getAllMenu();
+        List<RoleMenu> roleMenus = roleMenuDAO.queryByMenuIds(menus);
+        Map<Long, String> roleMenusMap = Maps.newConcurrentMap();
+        //menu作为key,拼接String类型roleIds
+        roleMenus.forEach(roleMenu -> {
+            if (roleMenusMap.containsKey(roleMenu.getMenuId())) {
+                StringBuilder roleIds = new StringBuilder(roleMenusMap.get(roleMenu.getMenuId()));
+                roleIds.append(roleMenu.getRoleId()).append(",");
+                roleMenusMap.put(roleMenu.getMenuId(), roleIds.toString());
+            } else {
+                roleMenusMap.put(roleMenu.getMenuId(), roleMenu.getRoleId() + ",");
+            }
+        });
+
         for (Menu menu : menus) {
             if (StringUtils.hasText(menu.getMenuUrl())) {
-                List<Integer> roleIds = menuDAO.queryRoleIdsByMenuId(menu.getId());
-                StringBuilder builder = new StringBuilder();
-                if (roleIds != null && roleIds.size() > 0) {
-                    for (Integer roleId : roleIds) {
-                        builder.append(roleId).append(",");
-                    }
-                    String str = builder.substring(0, builder.length() - 1);
+                String roleIds = roleMenusMap.get(menu.getId());
+                if (null != roleIds) {
+                    String str = roleIds.substring(0, roleIds.length() - 1);
                     section.put(menu.getMenuUrl(), MessageFormat.format(ROLE_STRING, str));
                 }
             }
@@ -86,7 +104,7 @@ public class MyShiroFilterFactoryBean extends ShiroFilterFactoryBean {
                 }
             }
         } catch (Exception e) {
-            LOGGER.error("shiro 更新权限失败！！", e);
+            LOGGER.error("shiro 更新权限失败！！{}", e);
         }
     }
 }

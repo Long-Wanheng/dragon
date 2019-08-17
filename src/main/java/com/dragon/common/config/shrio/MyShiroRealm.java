@@ -7,6 +7,8 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
@@ -16,6 +18,7 @@ import java.util.List;
  * @CreateTime: 2019-08-17 20:22
  */
 public class MyShiroRealm extends AuthorizingRealm {
+    private static final Logger LOGGER = LoggerFactory.getLogger(MyShiroRealm.class);
 
     @Autowired
     private UserService userService;
@@ -44,8 +47,8 @@ public class MyShiroRealm extends AuthorizingRealm {
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
         UsernamePasswordToken token = (UsernamePasswordToken) authenticationToken;
         String params = token.getUsername();
-        User user = userService.getLoginUser(params);
-        if (user == null) {
+        User user = userService.getLoginUser(params, new String(token.getPassword()));
+        if (null == user) {
             return null;
         }
         //此处返回的对象中的principal 不再是单纯的用户的id，而是用户对象，因为后面在序列化到redis中的时候会调用该对象的getId方法，如果返回id 没有那个方法

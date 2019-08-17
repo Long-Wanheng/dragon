@@ -17,7 +17,7 @@ public interface UserService {
      * @param loginParam
      * @return 登录用户
      */
-    User getLoginUser(String loginParam);
+    User getLoginUser(String loginParam,String password);
 
     /**
      * 根据用户id查询角色
