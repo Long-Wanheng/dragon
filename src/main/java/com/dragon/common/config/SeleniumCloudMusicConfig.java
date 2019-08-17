@@ -4,6 +4,7 @@ package com.dragon.common.config;
 import com.dragon.common.exception.DragonException;
 import com.dragon.model.entity.SeleniumCloudMusicUser;
 import org.apache.commons.lang3.StringUtils;
+import org.assertj.core.util.Lists;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -13,7 +14,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -54,7 +54,7 @@ public class SeleniumCloudMusicConfig {
         driver.switchTo().frame(iframe);
 
         List<WebElement> elements = driver.findElements(By.xpath("//div[@class='itm']"));
-        List<SeleniumCloudMusicUser> userList = new ArrayList<SeleniumCloudMusicUser>();
+        List<SeleniumCloudMusicUser> userList = Lists.newArrayList();
 
         for (WebElement webElement : elements) {
             webElement.findElement(By.tagName("div"));
