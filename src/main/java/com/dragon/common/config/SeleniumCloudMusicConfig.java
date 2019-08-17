@@ -28,6 +28,7 @@ public class SeleniumCloudMusicConfig {
     private String chromeDriverPath;
     @Value("${chrome.driver.key}")
     private String chromeDriverKey;
+
     public static final Logger LOGGER = LoggerFactory.getLogger(SeleniumCloudMusicConfig.class);
 
     private static final String MUSIC_URL = "https://music.163.com/#/song?id=";
