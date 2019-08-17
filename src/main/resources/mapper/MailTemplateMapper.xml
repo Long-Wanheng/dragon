@@ -11,6 +11,6 @@
     </resultMap>
 
     <select id="getMailTemplateByName" parameterType="java.lang.String" resultType="MailTemplate">
-        SELECT id,name,title,context,is_delete FROM mail_template WHERE name=#{name}
+        SELECT id,name,title,context,is_delete FROM dragon_mail_template WHERE name=#{name}
     </select>
 </mapper>

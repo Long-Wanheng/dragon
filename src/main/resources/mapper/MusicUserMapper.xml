@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dragon.dao.MusicUserDAO">
     <insert id="batchAdd" parameterType="java.util.List">
-        INSERT INTO music_user(
+        INSERT INTO dragon_music_user(
         music_id,
         music_nick_name,
         user_url)VALUES

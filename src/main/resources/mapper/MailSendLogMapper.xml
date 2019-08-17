@@ -14,7 +14,7 @@
     </resultMap>
 
     <insert id="add" parameterType="MailSendLog" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO mail_send_log(title,context,to_mail,cc_mail,status,created_time)
+        INSERT INTO dragon_mail_send_log(title,context,to_mail,cc_mail,status,created_time)
         VALUES (#{title},#{context},
             #{toMail},
             #{ccMail},
