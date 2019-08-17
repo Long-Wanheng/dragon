@@ -16,6 +16,7 @@ import java.text.MessageFormat;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+
 /**
  * @Author: 龙万恒
  * @CreateTime: 2019-08-17 20:22
@@ -85,8 +86,7 @@ public class MyShiroFilterFactoryBean extends ShiroFilterFactoryBean {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.error("shiro 更新权限失败！！", e);
         }
-
     }
 }
