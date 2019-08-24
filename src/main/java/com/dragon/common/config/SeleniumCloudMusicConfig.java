@@ -38,7 +38,7 @@ public class SeleniumCloudMusicConfig {
      */
     public List<SeleniumCloudMusicUser> getSeleniumCloudMusicUserInfo(String songId) {
         if (StringUtils.isNotBlank(songId)) {
-            LOGGER.info("要爬虫获取数据的歌曲id为 {}", songId);
+            LOGGER.info("爬虫获取数据的歌曲id为 {}", songId);
         } else {
             throw new DragonException("歌曲id不能为空");
         }
