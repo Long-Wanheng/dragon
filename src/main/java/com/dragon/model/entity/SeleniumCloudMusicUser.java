@@ -31,6 +31,13 @@ public class SeleniumCloudMusicUser {
      */
     private Date createTime;
 
+    /**
+     * 用户等级
+     */
+
+    private String lever;
+
+
     public Long getId() {
         return id;
     }
@@ -74,4 +81,13 @@ public class SeleniumCloudMusicUser {
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
+
+    public String getLever() {
+        return lever;
+    }
+
+    public void setLever(String lever) {
+        this.lever = lever;
+    }
+
 }

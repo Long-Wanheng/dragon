@@ -12,4 +12,8 @@
             (#{item.musicId},#{item.musicNickName},#{item.userUrl},#{item.createTime})
         </foreach>
     </insert>
+    
+    <select id="queryMusicUser" parameterType="com.dragon.model">
+
+    </select>
 </mapper>

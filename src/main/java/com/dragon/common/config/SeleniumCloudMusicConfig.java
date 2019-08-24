@@ -50,33 +50,42 @@ public class SeleniumCloudMusicConfig {
         } catch (Exception e) {
             LOGGER.error("chrome driver initialization failed");
         }
-        WebDriver driver = new ChromeDriver();
-        driver.get(MUSIC_URL + songId);
-        WebElement iframe = driver.findElement(By.className("g-iframe"));
-        driver.switchTo().frame(iframe);
+        List<SeleniumCloudMusicUser> userList = null;
+        try {
+            WebDriver driver = new ChromeDriver();
+            driver.get(MUSIC_URL + songId);
+            WebElement iframe = driver.findElement(By.className("g-iframe"));
+            driver.switchTo().frame(iframe);
 
-        List<WebElement> elements = driver.findElements(By.xpath("//div[@class='itm']"));
-        List<SeleniumCloudMusicUser> userList = Lists.newArrayList();
+            List<WebElement> elements = driver.findElements(By.xpath("//div[@class='itm']"));
+            userList = Lists.newArrayList();
 
-        Date currentTime = new Date();
-        for (WebElement webElement : elements) {
-            webElement.findElement(By.tagName("div"));
-            WebElement node = webElement.findElement(By.tagName("a"));
-            String url = node.getAttribute("href");
-            SeleniumCloudMusicUser user = new SeleniumCloudMusicUser();
-            user.setUserUrl(url);
-            user.setMusicId(url.substring(MUSIC_URL.length()));
-            userList.add(user);
-        }
-        for (SeleniumCloudMusicUser user : userList) {
-            driver.get(user.getUserUrl());
-            WebElement ifra = driver.findElement(By.className("g-iframe"));
-            driver.switchTo().frame(ifra);
-            WebElement subject = driver.findElement(By.tagName("h2"));
-            user.setNickName(subject.getText());
-            user.setMusicId(songId);
-            user.setCreateTime(currentTime);
+            Date currentTime = new Date();
+            for (WebElement webElement : elements) {
+                webElement.findElement(By.tagName("div"));
+                WebElement node = webElement.findElement(By.tagName("a"));
+                String url = node.getAttribute("href");
+                SeleniumCloudMusicUser user = new SeleniumCloudMusicUser();
+                user.setUserUrl(url);
+                user.setMusicId(url.substring(MUSIC_URL.length()));
+                userList.add(user);
+            }
+            for (SeleniumCloudMusicUser user : userList) {
+                driver.get(user.getUserUrl());
+                WebElement ifra = driver.findElement(By.className("g-iframe"));
+                driver.switchTo().frame(ifra);
+                WebElement subject = driver.findElement(By.tagName("h2"));
+                user.setNickName(subject.getText());
+                user.setMusicId(songId);
+                user.setCreateTime(currentTime);
+                String nickName = user.getMusicNickName();
+                user.setLever(nickName.substring(nickName.length() - 1));
+                user.setNickName(nickName.substring(0, nickName.length() - 1));
+            }
+        } catch (Exception e) {
+            LOGGER.error("网易云抓取数据失败!", e);
         }
         return userList;
     }
+
 }
