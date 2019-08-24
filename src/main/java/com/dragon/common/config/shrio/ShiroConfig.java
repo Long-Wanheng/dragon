@@ -54,11 +54,6 @@ public class ShiroConfig {
     @Bean
     public RedisCacheManager shiroRedisCacheManager(RedisManager redisManager) {
         RedisCacheManager redisCacheManager = new RedisCacheManager();
-        // redisCacheManager.setPrincipalIdFieldName("主键的属性名");
-        // 默认在real的 认证方法返回的SimpleAuthenticationInfo(Object principal, Object credentials, String realmName)
-        // principal对象必须有id属性，如果没有id而是其他唯一属性，可以设置自己的属性名
-        //此处直接调用形参就行，不需要调用创建这个对象的方法，
-        // @Bean注解，springboot会自动创建
         redisCacheManager.setRedisManager(redisManager);
         return redisCacheManager;
     }
@@ -66,7 +61,6 @@ public class ShiroConfig {
     @Bean
     public RedisManager redisManager(JedisPool jedisPool) {
         RedisManager redisManager = new RedisManager();
-        //新版本依赖包使用的是jedispool，没有单独设置redis相关参数的方法了
         redisManager.setJedisPool(jedisPool);
         return redisManager;
     }
