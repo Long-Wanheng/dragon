@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -23,7 +24,7 @@ import java.util.List;
  * @Author: 龙万恒
  * @CreateTime: 2019-08-17 20:07
  */
-@Controller
+@RestController
 public class LoginController {
     public static final Logger LOGGER = LoggerFactory.getLogger(IndexController.class);
     @Autowired
@@ -48,18 +49,18 @@ public class LoginController {
     }
 
     @RequestMapping("logout")
-    public String logout() {
+    public ModelAndView logout() {
         Subject subject = SecurityUtils.getSubject();
         subject.logout();
-        return "login";
+        return new ModelAndView(new RedirectView("login"));
     }
 
     @RequestMapping("index")
-    public String index(Model model) {
+    public ModelAndView index(Model model) {
         Subject subject = SecurityUtils.getSubject();
         //因为认证方法返回的info对象的principal属性由原先的id变成了user对象，所以此处需要强转
         List<Menu> menus = menuService.getUserMenuByUserId((((User) subject.getPrincipal()).getId()));
         model.addAttribute("menus", menus);
-        return "index";
+        return new ModelAndView(new RedirectView("index"));
     }
 }
