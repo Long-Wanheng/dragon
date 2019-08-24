@@ -1,6 +1,8 @@
 package com.dragon.dao;
 
 import com.dragon.model.entity.SeleniumCloudMusicUser;
+import com.dragon.model.query.SeleniumCloudMusicUserQuery;
+import com.dragon.model.vo.SeleniumCloudMusicUserVo;
 
 import java.util.List;
 
@@ -17,4 +19,13 @@ public interface MusicUserDAO {
      * @return 添加个数
      */
     int batchAdd(List<SeleniumCloudMusicUser> userList);
+
+
+    /**
+     * 用户查询
+     *
+     * @param query
+     * @return 用户集合
+     */
+    List<SeleniumCloudMusicUserVo> queryMusicUser(SeleniumCloudMusicUserQuery query);
 }
