@@ -31,8 +31,8 @@ public class LoginController {
     private MenuService menuService;
 
     @RequestMapping("/login")
-    public String loginPage() {
-        return "login";
+    public ModelAndView loginPage() {
+        return new ModelAndView("login");
     }
 
     @RequestMapping("/doLogin")
@@ -61,6 +61,6 @@ public class LoginController {
         //因为认证方法返回的info对象的principal属性由原先的id变成了user对象，所以此处需要强转
         List<Menu> menus = menuService.getUserMenuByUserId((((User) subject.getPrincipal()).getId()));
         model.addAttribute("menus", menus);
-        return new ModelAndView(new RedirectView("index"));
+        return new ModelAndView("index");
     }
 }
