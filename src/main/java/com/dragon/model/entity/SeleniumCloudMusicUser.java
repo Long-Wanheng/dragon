@@ -1,5 +1,7 @@
 package com.dragon.model.entity;
 
+import java.util.Date;
+
 /**
  * 网易云用户实体类
  *
@@ -23,6 +25,11 @@ public class SeleniumCloudMusicUser {
      * 网易云用户主页
      */
     private String userUrl;
+
+    /**
+     * 创建时间
+     */
+    private Date createTime;
 
     public Long getId() {
         return id;
@@ -54,5 +61,17 @@ public class SeleniumCloudMusicUser {
 
     public void setMusicId(String musicId) {
         this.musicId = musicId;
+    }
+
+    public void setMusicNickName(String musicNickName) {
+        this.musicNickName = musicNickName;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 }

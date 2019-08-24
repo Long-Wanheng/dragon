@@ -7,9 +7,9 @@
         INSERT INTO dragon_music_user(
         music_id,
         music_nick_name,
-        user_url)VALUES
+        user_url,create_time)VALUES
         <foreach collection="list" item="item" index="index" separator=",">
-            (#{item.musicId},#{item.musicNickName},#{item.userUrl})
+            (#{item.musicId},#{item.musicNickName},#{item.userUrl},#{item.createTime})
         </foreach>
     </insert>
 </mapper>

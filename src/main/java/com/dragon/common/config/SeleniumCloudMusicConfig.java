@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -57,6 +58,7 @@ public class SeleniumCloudMusicConfig {
         List<WebElement> elements = driver.findElements(By.xpath("//div[@class='itm']"));
         List<SeleniumCloudMusicUser> userList = Lists.newArrayList();
 
+        Date currentTime = new Date();
         for (WebElement webElement : elements) {
             webElement.findElement(By.tagName("div"));
             WebElement node = webElement.findElement(By.tagName("a"));
@@ -72,6 +74,8 @@ public class SeleniumCloudMusicConfig {
             driver.switchTo().frame(ifra);
             WebElement subject = driver.findElement(By.tagName("h2"));
             user.setNickName(subject.getText());
+            user.setMusicId(songId);
+            user.setCreateTime(currentTime);
         }
         return userList;
     }
