@@ -67,7 +67,7 @@ public class SeleniumCloudMusicConfig {
                 String url = node.getAttribute("href");
                 SeleniumCloudMusicUser user = new SeleniumCloudMusicUser();
                 user.setUserUrl(url);
-                user.setMusicId(url.substring(MUSIC_URL.length()));
+                user.setMusicId(url.substring(35));
                 userList.add(user);
             }
             for (SeleniumCloudMusicUser user : userList) {
