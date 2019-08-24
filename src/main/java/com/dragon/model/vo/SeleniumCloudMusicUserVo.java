@@ -13,6 +13,19 @@ public class SeleniumCloudMusicUserVo extends SeleniumCloudMusicUser {
      */
     private String songName;
 
+    /**
+     * 主键id
+     */
+    private String songKey;
+
+    public String getSongKey() {
+        return songKey;
+    }
+
+    public void setSongKey(String songKey) {
+        this.songKey = songKey;
+    }
+
     public String getSongName() {
         return songName;
     }

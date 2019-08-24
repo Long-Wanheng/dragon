@@ -3,6 +3,9 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dragon.dao.MusicUserDAO">
+    <resultMap id="baseMap" type="SeleniumCloudMusicUser">
+
+    </resultMap>
     <insert id="batchAdd" parameterType="java.util.List">
         INSERT INTO dragon_music_user(
         music_id,
@@ -12,8 +15,20 @@
             (#{item.musicId},#{item.musicNickName},#{item.userUrl},#{item.createTime})
         </foreach>
     </insert>
-    
-    <select id="queryMusicUser" parameterType="com.dragon.model">
 
+    <select id="queryMusicUser" parameterType="com.dragon.model">
+        <include refid="baseSQL"/>
     </select>
+
+    <sql id="baseSQL">
+        SELECT u.id,u.music_id,
+          u.music_nick_name,
+          u.music_nick_name,
+          u.user_url,
+          u.create_time,
+          s.id as songKey,
+          s.song_id,
+          s.song_name
+        FROM dragon_music_user AS u LEFT JOIN dragon_music_songs s ON u.id=s.song_id
+    </sql>
 </mapper>
