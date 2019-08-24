@@ -7,6 +7,7 @@ import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.crazycake.shiro.RedisCacheManager;
 import org.crazycake.shiro.RedisManager;
 import org.crazycake.shiro.RedisSessionDAO;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import redis.clients.jedis.JedisPool;
@@ -21,13 +22,23 @@ import java.util.Map;
  */
 @Configuration
 public class ShiroConfig {
+
+    @Value("${dragon.redis.url}")
+    public String redisUrl;
+    @Value("${dragon.redis.port}")
+    public Integer redisPort;
+    @Value("${dragon.redis.timeout}")
+    public Integer redisTimeOut;
+    @Value("${dragon.redis.password}")
+    public String redisPassword;
+
     /**
      * @return JedisPool
      */
     @Bean
     public JedisPool jedisPool() {
         JedisPoolConfig config = new JedisPoolConfig();
-        JedisPool jedisPool = new JedisPool(config, "192.168.1.104", 6379, 30000, "123456");
+        JedisPool jedisPool = new JedisPool(config, redisUrl, redisPort, redisTimeOut, redisPassword);
         return jedisPool;
     }
 
@@ -43,11 +54,6 @@ public class ShiroConfig {
     @Bean
     public RedisCacheManager shiroRedisCacheManager(RedisManager redisManager) {
         RedisCacheManager redisCacheManager = new RedisCacheManager();
-        // redisCacheManager.setPrincipalIdFieldName("主键的属性名");
-        // 默认在real的 认证方法返回的SimpleAuthenticationInfo(Object principal, Object credentials, String realmName)
-        // principal对象必须有id属性，如果没有id而是其他唯一属性，可以设置自己的属性名
-        //此处直接调用形参就行，不需要调用创建这个对象的方法，
-        // @Bean注解，springboot会自动创建
         redisCacheManager.setRedisManager(redisManager);
         return redisCacheManager;
     }
@@ -55,7 +61,6 @@ public class ShiroConfig {
     @Bean
     public RedisManager redisManager(JedisPool jedisPool) {
         RedisManager redisManager = new RedisManager();
-        //新版本依赖包使用的是jedispool，没有单独设置redis相关参数的方法了
         redisManager.setJedisPool(jedisPool);
         return redisManager;
     }
