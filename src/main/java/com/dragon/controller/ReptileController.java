@@ -4,6 +4,8 @@ import com.dragon.service.SeleniumCloudMusicService;
 import com.dragon.util.ResultSet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -12,11 +14,12 @@ import org.springframework.web.bind.annotation.RestController;
  * @Description: ${Description}
  */
 @RestController
+@RequestMapping("/reptile")
 public class ReptileController {
     @Autowired
     private SeleniumCloudMusicService seleniumCloudMusicService;
 
-    @GetMapping("/music")
+    @PostMapping("/cloudMusic")
     public ResultSet reptileCloudMusic(String songId) {
         return ResultSet.view(seleniumCloudMusicService.reptileMusicUsers(songId));
     }
