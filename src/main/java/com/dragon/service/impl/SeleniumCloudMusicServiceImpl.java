@@ -16,8 +16,8 @@ import com.dragon.model.vo.SeleniumCloudMusicUserVo;
 import com.dragon.service.MailSendService;
 import com.dragon.service.SeleniumCloudMusicService;
 import com.dragon.util.TableData;
+import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,7 +77,7 @@ public class SeleniumCloudMusicServiceImpl implements SeleniumCloudMusicService 
         data.setPageNum(query.getPageNum());
         data.setPageSize(query.getPageSize());
         data.setData(result);
-        data.setCount(new PageInfo<>(result).getTotal());
+        data.setCount(((Page) result).getTotal());
         return data;
     }
 
