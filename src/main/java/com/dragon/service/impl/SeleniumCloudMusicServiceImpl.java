@@ -73,7 +73,7 @@ public class SeleniumCloudMusicServiceImpl implements SeleniumCloudMusicService 
         }
         PageHelper.startPage(query.getPageNum(), query.getPageNum());
         List<SeleniumCloudMusicUserVo> result = musicUserDAO.queryMusicUser(query);
-        TableData data = new TableData();
+        TableData<SeleniumCloudMusicUserVo> data = new TableData<SeleniumCloudMusicUserVo>();
         data.setPageNum(query.getPageNum());
         data.setPageSize(query.getPageSize());
         data.setData(result);
