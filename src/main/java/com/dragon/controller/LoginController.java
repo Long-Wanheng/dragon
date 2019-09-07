@@ -1,21 +1,26 @@
 package com.dragon.controller;
 
+import com.dragon.common.utils.VerificationCodeImgUtil;
 import com.dragon.model.entity.Menu;
 import com.dragon.model.entity.User;
 import com.dragon.service.MenuService;
+import com.dragon.util.ResultSet;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
+import org.thymeleaf.util.StringUtils;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -63,4 +68,33 @@ public class LoginController {
         model.addAttribute("menus", menus);
         return new ModelAndView("index");
     }
+
+    @RequestMapping(value = "/getCode")
+    public void validateCode(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        // 设置响应的类型格式为图片格式
+        response.setContentType("image/jpeg");
+        //禁止图像缓存。
+        response.setHeader("Pragma", "no-cache");
+        response.setHeader("Cache-Control", "no-cache");
+        response.setDateHeader("Expires", 0);
+
+        HttpSession session = request.getSession();
+        VerificationCodeImgUtil vCode = new VerificationCodeImgUtil(120, 40, 5, 100);
+        session.setAttribute("code", vCode.getCode());
+        vCode.write(response.getOutputStream());
+    }
+
+    @RequestMapping("/validateCode")
+    public ResultSet validateCode(String code, HttpSession session) {
+        String trueCode = (String) session.getAttribute("code");
+        if (StringUtils.isEmpty(code)) {
+            return ResultSet.view(false);
+        }
+        if (trueCode.equalsIgnoreCase(code)) {
+            return ResultSet.view(true);
+        } else {
+            return ResultSet.view(false);
+        }
+    }
+
 }
