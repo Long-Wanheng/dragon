@@ -18,6 +18,7 @@ public class UserUtils {
     private static ThreadLocal<String> currentToken = new ThreadLocal<String>();
 
     public static void setCurrentUser(User user) {
+        inforDesensitization(user);
         currentUser.set(user);
     }
 
@@ -25,16 +26,26 @@ public class UserUtils {
         return Optional.of(currentUser.get());
     }
 
-    public static void setCurrentToken(String token){
+    public static void setCurrentToken(String token) {
         currentToken.set(token);
     }
 
-    public static Optional<String> getCurrentToken(){
+    public static Optional<String> getCurrentToken() {
         return Optional.of(currentToken.get());
     }
 
     public static void remove() {
         currentUser.remove();
         currentToken.remove();
+    }
+
+    public static void inforDesensitization(User user) {
+        if (null == user) {
+            return;
+        }
+        user.setPassword(null);
+        user.setId(null);
+        user.setPassword(null);
+        user.setCreateTime(null);
     }
 }

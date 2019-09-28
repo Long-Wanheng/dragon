@@ -3,4 +3,56 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dragon.mapper.RoleMapper">
+    <resultMap id="baseMap" type="com.dragon.model.entity.Role">
+        <id property="id" column="id" jdbcType="BIGINT"/>
+        <result property="roleName" column="role_name" jdbcType="VARCHAR"/>
+        <result property="remark" column="remark" jdbcType="VARCHAR"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="createUser" column="create_user" jdbcType="VARCHAR"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+        <result property="updateUser" column="update_user" jdbcType="VARCHAR"/>
+        <result property="status" column="status" jdbcType="INTEGER"/>
+        <result property="deleteFlag" column="delete_flag" jdbcType="INTEGER"/>
+    </resultMap>
+    <sql id="baseSQL">
+        SELECT
+        id,role_name,remark,create_time,create_user,status,delete_flag
+        FROM dragon_role
+    </sql>
+
+    <select id="getAllRole" resultMap="baseMap">
+        <include refid="baseSQL"/>
+        <where>
+            delete_flag = 0
+        </where>
+    </select>
+
+    <insert id="add" parameterType="com.dragon.model.entity.Role" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO dragon_role(role_name,remark,create_time,create_user)
+        VALUES(#{roleName},#{remark},NOW(),#{createUser})
+    </insert>
+
+    <update id="update" parameterType="com.dragon.model.entity.Role">
+        UPDATE dragon_role
+        <set>
+            <if test="roleName != null and roleName != ''">
+                role_name = #{roleName},
+            </if>
+            <if test="remark != null and remark != ''">
+                remark = #{remark},
+            </if>
+            <if test="status != null and status != ''">
+                status = #{status},
+            </if>
+            <if test="updateUser != null and updateUser != ''">
+                updat_user = #{updateUser},
+            </if>
+            <if test="deleteFlag != null ">
+                delete_flag = #{deleteFlag},
+            </if>
+            update_time = NOW()
+        </set>
+        WHERE id=#{id}
+    </update>
+
 </mapper>

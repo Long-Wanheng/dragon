@@ -32,7 +32,27 @@ public class Role {
     /**
      * 是否删除
      */
-    private Integer deleteFlag = 0;
+    private Integer deleteFlag = NOT_DELETE;
+
+    /**
+     * 角色备注
+     */
+    private String remark;
+
+    /**
+     * 修改时间
+     */
+    private Date updateTime;
+
+    /**
+     * 修改人
+     */
+    private String updateUser;
+
+    public static final Integer DELETE = 1;
+
+    public static final Integer NOT_DELETE = 0;
+
 
     public Long getId() {
         return id;
@@ -66,6 +86,22 @@ public class Role {
         this.createUser = createUser;
     }
 
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
+
+    public String getUpdateUser() {
+        return updateUser;
+    }
+
+    public void setUpdateUser(String updateUser) {
+        this.updateUser = updateUser;
+    }
+
     public String getStatus() {
         return status;
     }
@@ -80,5 +116,13 @@ public class Role {
 
     public void setDeleteFlag(Integer deleteFlag) {
         this.deleteFlag = deleteFlag;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
 }
