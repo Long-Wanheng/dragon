@@ -14,7 +14,10 @@ public class LoginParamType {
 
     private static final Pattern EMAIL_RULE = Pattern.compile("\\w+@\\w+(\\.\\w+)+");
 
-    private static final Pattern PHONE_PATTERN = Pattern.compile("/^[1](([3][0-9])|([4][5-9])|([5][0-3,5-9])|([6][5,6])|([7][0-8])|([8][0-9])|([9][1,8,9]))[0-9]{8}$/\n");
+    /**
+     * 该表达式目前存在问题,后期需优化
+     */
+    private static final Pattern PHONE_PATTERN = Pattern.compile("/^[1](([3][0-9])|([4][5-9])|([5][0-3,5-9])|([6][5,6])|([7][0-8])|([8][0-9])|([9][1,8,9]))[0-9]{8}$/");
 
     /**
      * 获取当前登录类型
