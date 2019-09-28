@@ -7,8 +7,8 @@
     <select id="findUsersByTemplateId"  resultType="java.lang.String">
         SELECT
         u.email
-        FROM USER u INNER JOIN dragon_mail_template_user tu ON u.id=tu.`user_id`
-        INNER JOIN mail_template t ON tu.`template_id`=t.id
+        FROM dragon_user u INNER JOIN dragon_mail_template_user tu ON u.id=tu.`user_id`
+        INNER JOIN dragon_mail_template t ON tu.`template_id`=t.id
         <where>
             t.id=#{id} and tu.send_type = #{type}
         </where>
