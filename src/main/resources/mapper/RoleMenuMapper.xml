@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.dragon.dao.RoleMenuDAO">
+<mapper namespace="com.dragon.mapper.RoleMenuMapper">
     <select id="queryByMenuIds" resultType="com.dragon.model.entity.RoleMenu">
         SELECT role_id,menu_id FROM dragon_role_menu
         <where>

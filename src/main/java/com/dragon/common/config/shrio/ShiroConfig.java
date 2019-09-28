@@ -1,6 +1,6 @@
 package com.dragon.common.config.shrio;
 
-import com.dragon.dao.MenuDAO;
+import com.dragon.mapper.MenuMapper;
 import com.google.common.collect.Maps;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
@@ -84,7 +84,7 @@ public class ShiroConfig {
     }
 
     @Bean
-    public MyShiroFilterFactoryBean shiroFilter(MenuDAO menuDAO, SecurityManager securityManager) {
+    public MyShiroFilterFactoryBean shiroFilter(MenuMapper menuDAO, SecurityManager securityManager) {
         MyShiroFilterFactoryBean factoryBean = new MyShiroFilterFactoryBean();
         factoryBean.setSecurityManager(securityManager);
         factoryBean.setLoginUrl("/login");

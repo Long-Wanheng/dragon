@@ -1,4 +1,4 @@
-package com.dragon.dao;
+package com.dragon.mapper;
 
 import com.dragon.model.entity.User;
 import org.apache.ibatis.annotations.Param;
@@ -10,7 +10,7 @@ import java.util.List;
  * @CreateTime: 2019-08-17 20:41
  * @Description: ${Description}
  */
-public interface UserDAO {
+public interface UserMapper {
 
     /**
      * 根据昵称查询登录用户

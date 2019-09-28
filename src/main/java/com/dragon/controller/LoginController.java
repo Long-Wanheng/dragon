@@ -31,7 +31,7 @@ import java.util.List;
  */
 @RestController
 public class LoginController {
-    public static final Logger LOGGER = LoggerFactory.getLogger(IndexController.class);
+    public static final Logger LOGGER = LoggerFactory.getLogger(LoginController.class);
     @Autowired
     private MenuService menuService;
 

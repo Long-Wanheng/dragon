@@ -2,6 +2,7 @@ package com.dragon.common.config.shrio;
 
 import com.dragon.dao.MenuDAO;
 import com.dragon.dao.RoleMenuDAO;
+import com.dragon.mapper.MenuMapper;
 import com.dragon.model.entity.Menu;
 import com.dragon.model.entity.RoleMenu;
 import com.google.common.collect.Maps;
@@ -33,9 +34,9 @@ public class MyShiroFilterFactoryBean extends ShiroFilterFactoryBean {
     private static String filterChainDefinitions;
 
 
-    private MenuDAO menuDAO;
+    private MenuMapper menuDAO;
 
-    public void setMenuDAO(MenuDAO menuDAO) {
+    public void setMenuDAO(MenuMapper menuDAO) {
         this.menuDAO = menuDAO;
     }
 
