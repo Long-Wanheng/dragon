@@ -9,11 +9,29 @@ import java.util.Date;
  * @CreateTime: 2019-08-17 20:57
  */
 public class Role {
+    /**
+     * 主键id
+     */
     private Long id;
+    /**
+     * 角色名
+     */
     private String roleName;
+    /**
+     * 创建时间
+     */
     private Date createTime;
+    /**
+     * 创建人
+     */
     private String createUser;
+    /**
+     * 状态
+     */
     private String status;
+    /**
+     * 是否删除
+     */
     private Integer deleteFlag = 0;
 
     public Long getId() {
