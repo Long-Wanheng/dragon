@@ -19,9 +19,9 @@
     <a class="layui-btn layui-btn-xs" lay-event="edit-role">编辑</a>
     <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="assign-menu">授权</a>
 </script>
-<script type="text/html" id="role-status">
-    <input type="checkbox" id="status" name="status" value="{{d.id}}" lay-skin="switch" lay-text="有效|无效"
-           lay-filter="status-filter" {{ d.status== 1 ? 'checked' : '' }}>
+<script type="text/html" id="role-deleteFlag">
+    <input type="checkbox" id="deleteFlag" name="deleteFlag" value="{{d.id}}" lay-skin="switch" lay-text="有效|无效"
+           lay-filter="status-filter" {{ d.deleteFlag== 1 ? 'checked' : '' }}>
 </script>
 <table class="layui-table" lay-filter="role-table" id="role-table">
 </table>
@@ -53,22 +53,29 @@
             elem: '#role-table'
             , toolbar: '#role-head-bar'
             , cellMinWidth: 80
-            , url: 'role.html?act=table' //数据接口
-            , page: true //开启分页
+            , url: 'api/roleManage/list?act=list' //数据接口
+//            , page: true //开启分页
             , cols: [[
                 {field: 'id', title: 'ID', sort: true, fixed: 'left'}
-                , {field: 'name', title: '角色名'}
-                , {field: 'remark', title: '备注'}
+                , {field: 'role_name', title: '角色名'}
+                , {field: 'createUser', title: '创建人'}
                 , {
-                    field: 'status', title: '状态', templet: '#role-status'
-                }, {fixed: 'right', title: '操作', toolbar: '#role-role-bar', width: 180}
+                    field: 'createTime',
+                    title: '创建时间',
+                    templet: '<div>{{ Format(d.createTime,"yyyy-MM-dd HH:mm:ss")}}</div>'
+                }
+                , {
+                    field: 'deleteFlag', title: '状态', templet: '#role-deleteFlag'
+                }
+                , {field: 'remark', title: '备注'}
+                , {fixed: 'right', title: '操作', toolbar: '#role-role-bar', width: 180}
             ]]
         });
         //头工具栏事件
         table.on('toolbar(role-table)', function (obj) {
             switch (obj.event) {
                 case 'goEdit':
-                    openEditWindow();
+                   // openEditWindow();
                     break;
             }
             ;
@@ -79,7 +86,7 @@
             switch (obj.event) {
                 case 'edit-role': {
                     layui.use('form', function () {
-                        openEditWindow();
+                        //openEditWindow();
                         var form = layui.form;
                         form.val("role-edit-form", {
                             "id": data.id,
@@ -166,6 +173,7 @@
                 }
             });
         }
+
         $("#search-role-btn").click(function () {
             table.reload('role-table', {
                 where: {
