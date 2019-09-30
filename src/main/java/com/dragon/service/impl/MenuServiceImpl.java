@@ -1,8 +1,10 @@
 package com.dragon.service.impl;
 
+import com.dragon.common.exception.DragonException;
 import com.dragon.dao.MenuDAO;
 import com.dragon.model.entity.Menu;
 import com.dragon.service.MenuService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +22,28 @@ import java.util.Map;
 public class MenuServiceImpl implements MenuService {
     @Autowired
     private MenuDAO menuDAO;
+
+    @Override
+    public void addMenu(Menu menu) {
+        if (null == menu) {
+            throw new DragonException("参数非法!!");
+        }
+        if (StringUtils.isEmpty(menu.getMenuName())) {
+            throw new DragonException("菜单名不能为空!!");
+        }
+        menuDAO.addMenu(menu);
+    }
+
+    @Override
+    public void updateMenu(Menu menu) {
+        if (null == menu) {
+            throw new DragonException("参数非法!!");
+        }
+        if (null == menu.getId()) {
+            throw new DragonException("id非法!!");
+        }
+        menuDAO.updateMenu(menu);
+    }
 
     @Override
     public List<Menu> getMenuTree() {

@@ -10,6 +10,21 @@ import java.util.List;
  */
 public interface MenuService {
     /**
+     * 增加菜单
+     *
+     * @param menu
+     */
+    void addMenu(Menu menu);
+
+
+    /**
+     * 修改菜单
+     *
+     * @param menu
+     */
+    void updateMenu(Menu menu);
+
+    /**
      * 获取菜单树
      *
      * @return 菜单树
