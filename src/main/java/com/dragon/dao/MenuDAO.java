@@ -14,6 +14,21 @@ import java.util.List;
 public interface MenuDAO {
 
     /**
+     * 增加菜单
+     *
+     * @param menu
+     */
+    void addMenu(Menu menu);
+
+
+    /**
+     * 修改菜单
+     *
+     * @param menu
+     */
+    void updateMenu(Menu menu);
+
+    /**
      * 获取所有菜单
      *
      * @return 菜单

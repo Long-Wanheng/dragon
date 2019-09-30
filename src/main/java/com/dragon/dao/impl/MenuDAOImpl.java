@@ -12,12 +12,21 @@ import java.util.List;
 /**
  * @Author: 龙万恒
  * @CreateTime: 2019-09-28 21:33
- * @Description: ${Description}
  */
 @Service
 public class MenuDAOImpl implements MenuDAO {
     @Autowired
     private MenuMapper menuMapper;
+
+    @Override
+    public void addMenu(Menu menu) {
+        menuMapper.add(menu);
+    }
+
+    @Override
+    public void updateMenu(Menu menu) {
+        menuMapper.update(menu);
+    }
 
     @Override
     public List<Menu> getAllMenu() {

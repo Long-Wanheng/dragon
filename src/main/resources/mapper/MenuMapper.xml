@@ -31,6 +31,42 @@
         where ur.USER_ID=#{userId}
     </select>
 
+    <insert id="add" parameterType="com.dragon.model.entity.Menu" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO dragn_menu(
+        <if test="menuUrl != null and menuUrl != ''">
+            menu_url,
+        </if>
+        <if test="parentId != null ">
+            parent_id,
+        </if>
+        menu_name,
+        ) VALUES (
+        <if test="menuUrl != null and menuUrl != ''">
+            #{menuUrl},
+        </if>
+        <if test="parentId != null ">
+            #{parentId},
+        </if>
+        #{menuName},
+        )
+    </insert>
+
+    <update id="update" parameterType="com.dragon.model.entity.Menu">
+        UPDATE dragn_menu
+        <set>
+            <if test="menuUrl != null and menuUrl != ''">
+                menu_url = #{menuUrl},
+            </if>
+            <if test="parentId != null ">
+                parent_id = #{parentId},
+            </if>
+            <if test="menuName != null and menuName != ''">
+                menu_name = #{menu_name}
+            </if>
+        </set>
+        WHERE id=#{id}
+    </update>
+
     <select id="queryByMenuIds" resultType="com.dragon.model.entity.RoleMenu">
         SELECT role_id AS roleId,menu_id AS menuId FROM dragon_role_menu
         <where>
