@@ -26,7 +26,7 @@ public class IndexController {
     @Autowired
     private MailTemplateUserDAO templateUserDAO;
 
-    @PostMapping("indexs")
+    @PostMapping("index")
     public ResultSet init() {
         return ResultSet.view(null);
     }
