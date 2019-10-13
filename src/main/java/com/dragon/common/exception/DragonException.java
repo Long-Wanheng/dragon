@@ -28,7 +28,6 @@ public class DragonException extends RuntimeException{
             code = exceptionEnum.getResultCode().code().toString();
             message = exceptionEnum.getResultCode().message();
         }
-
     }
 
     public DragonException(String message) {
