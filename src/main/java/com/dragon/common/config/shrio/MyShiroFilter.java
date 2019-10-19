@@ -18,9 +18,9 @@ public class MyShiroFilter extends AuthorizationFilter {
         Subject subject = SecurityUtils.getSubject();
         String[] roleArray = (String[]) o;
         for (String s : roleArray) {
-            if (subject.hasRole(s)) {
+//            if (subject.hasRole(s)) {
                 return true;
-            }
+//            }
         }
         return false;
     }
