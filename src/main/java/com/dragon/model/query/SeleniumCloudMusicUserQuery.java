@@ -5,7 +5,7 @@ package com.dragon.model.query;
  * @CreateTime: 2019-08-24 19:05
  * @Description: ${Description}
  */
-public class SeleniumCloudMusicUserQuery extends Page {
+public class SeleniumCloudMusicUserQuery extends PageQuery {
     /**
      * 开始时间
      */

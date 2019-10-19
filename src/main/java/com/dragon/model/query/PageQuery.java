@@ -5,7 +5,7 @@ package com.dragon.model.query;
  * @CreateTime: 2019-08-24 19:47
  * @Description: ${Description}
  */
-public class Page {
+public class PageQuery {
     /**
      * 页码
      */
