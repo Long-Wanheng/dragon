@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 /**
  * @Author: 龙万恒
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @Description: ${Description}
  */
 @ControllerAdvice
+@RestControllerAdvice
 public class DragonExceptionHandler {
     private Logger logger = LoggerFactory.getLogger(DragonExceptionHandler.class);
 

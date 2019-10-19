@@ -14,7 +14,7 @@ import java.util.Properties;
  * @Author: 龙万恒
  * @CreateTime: 2019-10-13 17:53
  */
-@Configuration
+//@Configuration
 public class JedisPoolConfig {
     private static final Logger LOGGER = LoggerFactory.getLogger(JedisPoolConfig.class);
     private static JedisPool pool = null;

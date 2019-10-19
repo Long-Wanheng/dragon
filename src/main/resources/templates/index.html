@@ -52,7 +52,7 @@
                     <a th:if="${#lists.size(menu.children)}" href="javascript:;" th:text="${menu.text}"></a>
                     <dl th:if="${#lists.size(menu.children)}" class="layui-nav-child">
                         <dd th:each="child:${menu.children}"><a href="javascript:;"
-                                                                th:onclick="$('#main-content').load([[${child.url}]])"
+                                                                th:onclick="$('#main-content').load([[${child.menuUrl}]])"
                                                                 th:text="${child.text}"></a></dd>
                     </dl>
                 </li>
