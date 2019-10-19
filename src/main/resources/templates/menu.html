@@ -1,76 +1,76 @@
-<!--<!DOCTYPE html>-->
-<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 
-<!--<button class="layui-btn layui-btn-sm" id="menu-add-btn"><i class="layui-icon">&#xe654;</i>添加</button>-->
-<!--<button class="layui-btn layui-btn-sm layui-btn-danger" id="menu-del-btn"><i class="layui-icon">&#xe640;</i>删除</button>-->
-<!--<ul id="menu-tree">-->
-<!--</ul>-->
+<button class="layui-btn layui-btn-sm" id="menu-add-btn"><i class="layui-icon">&#xe654;</i>添加</button>
+<button class="layui-btn layui-btn-sm layui-btn-danger" id="menu-del-btn"><i class="layui-icon">&#xe640;</i>删除</button>
+<ul id="menu-tree">
+</ul>
 
-<!--<script type="text/javascript" th:inline="none">-->
-    <!--layui.use(['form','layer'], function () {-->
-        <!--var layer=layui.layer;-->
-        <!--$("#menu-tree").tree({-->
-            <!--url: "menu.html?act=tree",-->
-            <!--checkbox: true,-->
-            <!--cascadeCheck: false,-->
-            <!--onClick: function (node) {-->
-                <!--openEditWindow(node.id)-->
-            <!--},-->
-        <!--});-->
+<script type="text/javascript" th:inline="none">
+    layui.use(['form','layer'], function () {
+        var layer=layui.layer;
+        $("#menu-tree").tree({
+            url: "menu.html?act=tree",
+            checkbox: true,
+            cascadeCheck: false,
+            onClick: function (node) {
+                openEditWindow(node.id)
+            },
+        });
 
-        <!--$("#menu-add-btn").click(function () {-->
-            <!--openEditWindow("")-->
-        <!--})-->
-        <!--$("#menu-del-btn").click(function () {-->
-            <!--var nodes = $('#menu-tree').tree('getChecked');-->
-            <!--if (nodes.length > 0) {-->
-                <!--if (confirm("确认要删除吗？")) {-->
-                    <!--var param = ""-->
-                    <!--$.each(nodes, function (i, obj) {-->
-                        <!--param += "&ids=" + obj.id-->
-                    <!--})-->
-                    <!--$.ajax({-->
-                        <!--url: 'menu.html?act=delete',-->
-                        <!--method: "post",-->
-                        <!--data: param,-->
-                        <!--success: function (result) {-->
-                            <!--if (result.status) {-->
-                                <!--$("#menu-tree").tree("reload")-->
-                                <!--layer.close(index);-->
-                            <!--} else {-->
-                                <!--alert(result.message)-->
-                            <!--}-->
-                        <!--}-->
-                    <!--})-->
-                <!--}-->
-            <!--}-->
-        <!--})-->
+        $("#menu-add-btn").click(function () {
+            openEditWindow("")
+        })
+        $("#menu-del-btn").click(function () {
+            var nodes = $('#menu-tree').tree('getChecked');
+            if (nodes.length > 0) {
+                if (confirm("确认要删除吗？")) {
+                    var param = ""
+                    $.each(nodes, function (i, obj) {
+                        param += "&ids=" + obj.id
+                    })
+                    $.ajax({
+                        url: 'menu.html?act=delete',
+                        method: "post",
+                        data: param,
+                        success: function (result) {
+                            if (result.status) {
+                                $("#menu-tree").tree("reload")
+                                layer.close(index);
+                            } else {
+                                alert(result.message)
+                            }
+                        }
+                    })
+                }
+            }
+        })
 
 
-        <!--function openEditWindow(id) {-->
-            <!--layer.open({-->
-                <!--id: "menu-edit-window",-->
-                <!--type: 2,-->
-                <!--content: 'menu.html?act=go_edit&id=' + id,//这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响-->
-                <!--area: ['500px', '300px'],-->
-                <!--btn: ['提交', '取消'] //可以无限个按钮-->
-                <!--, yes: function (index, layero) {-->
-                    <!--$.ajax({-->
-                        <!--url: 'menu.html?act=edit',-->
-                        <!--method: "post",-->
-                        <!--data: $("#menu-edit-window iframe").contents().find("#menu-edit-form").serialize(),-->
-                        <!--success: function (result) {-->
-                            <!--if (result.status) {-->
-                                <!--$("#menu-tree").tree("reload")-->
-                                <!--layer.close(index);-->
-                            <!--} else {-->
-                                <!--alert(result.message)-->
-                            <!--}-->
-                        <!--}-->
-                    <!--})-->
-                <!--}-->
-            <!--});-->
-        <!--}-->
-    <!--})-->
-<!--</script>-->
-<!--</html>-->
+        function openEditWindow(id) {
+            layer.open({
+                id: "menu-edit-window",
+                type: 2,
+                content: 'menu.html?act=go_edit&id=' + id,//这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
+                area: ['500px', '300px'],
+                btn: ['提交', '取消'] //可以无限个按钮
+                , yes: function (index, layero) {
+                    $.ajax({
+                        url: 'menu.html?act=edit',
+                        method: "post",
+                        data: $("#menu-edit-window iframe").contents().find("#menu-edit-form").serialize(),
+                        success: function (result) {
+                            if (result.status) {
+                                $("#menu-tree").tree("reload")
+                                layer.close(index);
+                            } else {
+                                alert(result.message)
+                            }
+                        }
+                    })
+                }
+            });
+        }
+    })
+</script>
+</html>
