@@ -3,14 +3,13 @@
 
 <button class="layui-btn layui-btn-sm" id="menu-add-btn"><i class="layui-icon">&#xe654;</i>添加</button>
 <button class="layui-btn layui-btn-sm layui-btn-danger" id="menu-del-btn"><i class="layui-icon">&#xe640;</i>删除</button>
-<ul id="menu-tree">
-</ul>
+<ul id="menu-tree"></ul>
 
 <script type="text/javascript" th:inline="none">
-    layui.use(['form','layer'], function () {
-        var layer=layui.layer;
+    layui.use(['form', 'layer'], function () {
+        var layer = layui.layer;
         $("#menu-tree").tree({
-            url: "menu.html?act=tree",
+            url: "/api/menu/tree",
             checkbox: true,
             cascadeCheck: false,
             onClick: function (node) {
@@ -30,7 +29,7 @@
                         param += "&ids=" + obj.id
                     })
                     $.ajax({
-                        url: 'menu.html?act=delete',
+                        url: '/api/menu/delete',
                         method: "post",
                         data: param,
                         success: function (result) {
@@ -51,12 +50,12 @@
             layer.open({
                 id: "menu-edit-window",
                 type: 2,
-                content: 'menu.html?act=go_edit&id=' + id,//这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
+                content: '/public/page/menu_edit',
                 area: ['500px', '300px'],
                 btn: ['提交', '取消'] //可以无限个按钮
                 , yes: function (index, layero) {
                     $.ajax({
-                        url: 'menu.html?act=edit',
+                        url: '/api/menu/edit',
                         method: "post",
                         data: $("#menu-edit-window iframe").contents().find("#menu-edit-form").serialize(),
                         success: function (result) {

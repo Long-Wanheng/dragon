@@ -21,6 +21,7 @@ public class DragonExceptionHandler {
     @ExceptionHandler(RuntimeException.class)
     @ResponseBody
     public ResultSet errorMsg(Exception ex) {
+        ex.printStackTrace();
         if (ex instanceof DragonException) {
             return new ResultSet(-1, ex.getMessage());
         } else {

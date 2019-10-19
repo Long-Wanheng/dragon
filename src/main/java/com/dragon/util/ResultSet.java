@@ -8,7 +8,7 @@ public class ResultSet {
     /**
      * 状态码
      */
-    private int code = 1;
+    private int code = 0;
     /**
      * 信息
      */
