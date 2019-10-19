@@ -29,6 +29,11 @@ public class MenuDAOImpl implements MenuDAO {
     }
 
     @Override
+    public void delete(List<Long> ids) {
+        menuMapper.delete(ids);
+    }
+
+    @Override
     public List<Menu> getAllMenu() {
         return menuMapper.getAllMenu();
     }

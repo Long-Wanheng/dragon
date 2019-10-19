@@ -1,13 +1,14 @@
 package com.dragon.controller;
 
 import com.dragon.model.entity.Menu;
+import com.dragon.model.query.MenuQuery;
 import com.dragon.service.MenuService;
 import com.dragon.util.ResultSet;
+import com.dragon.util.TableData;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * @Author: 龙万恒
@@ -24,6 +25,11 @@ public class MenuController {
         return ResultSet.view(menuService.getMenuTree());
     }
 
+    @RequestMapping("/table")
+    public TableData table(@RequestBody MenuQuery query) {
+        return menuService.getTable(query);
+    }
+
     @RequestMapping("/add")
     public ResultSet add(@RequestBody Menu menu) {
         menuService.addMenu(menu);
@@ -33,6 +39,12 @@ public class MenuController {
     @RequestMapping("/update")
     public ResultSet update(@RequestBody Menu menu) {
         menuService.updateMenu(menu);
+        return ResultSet.view(true);
+    }
+
+    @RequestMapping("/delete/{ids}")
+    public ResultSet delete(@PathVariable List<Long> ids) {
+        menuService.delete(ids);
         return ResultSet.view(true);
     }
 

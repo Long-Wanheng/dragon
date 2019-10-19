@@ -1,6 +1,9 @@
 package com.dragon.service;
 
 import com.dragon.model.entity.Menu;
+import com.dragon.model.query.MenuQuery;
+import com.dragon.model.query.PageQuery;
+import com.dragon.util.TableData;
 
 import java.util.List;
 
@@ -25,11 +28,26 @@ public interface MenuService {
     void updateMenu(Menu menu);
 
     /**
+     * 删除菜单
+     *
+     * @param ids
+     */
+    void delete(List<Long> ids);
+
+    /**
      * 获取菜单树
      *
      * @return 菜单树
      */
     List<Menu> getMenuTree();
+
+    /**
+     * 菜单table
+     *
+     * @param query
+     * @return 菜单树
+     */
+    TableData<Menu> getTable(MenuQuery query);
 
     /**
      * 根据用户id获取用户菜单

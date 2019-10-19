@@ -67,6 +67,14 @@
         WHERE id=#{id}
     </update>
 
+    <delete id="delete" parameterType="java.util.List">
+        DELETE FROM dragn_menu
+        WHERE id IN
+        <foreach collection="ids" open="(" close=")" separator="," index="index" item="item">
+            #{item.id}
+        </foreach>
+    </delete>
+
     <select id="queryByMenuIds" resultType="com.dragon.model.entity.RoleMenu">
         SELECT role_id AS roleId,menu_id AS menuId FROM dragon_role_menu
         <where>

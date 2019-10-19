@@ -13,11 +13,29 @@ import java.util.Map;
  * @CreateTime: 2019-08-17 21:00
  */
 public class Menu {
+    /**
+     * 主键id
+     */
     private Long id;
+    /**
+     * 菜单名
+     */
     private String menuName;
+    /**
+     * 菜单URL
+     */
     private String menuUrl;
+    /**
+     * 子菜单
+     */
     private List<Menu> children = Lists.newArrayList();
+    /**
+     * 父id
+     */
     private Long parentId;
+    /**
+     * layUI使用
+     */
     private Map<String, Object> attributes = Maps.newHashMap();
 
     public Long getId() {

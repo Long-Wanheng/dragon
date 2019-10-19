@@ -7,9 +7,8 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 /**
- * @Author: 龙万恒
- * @CreateTime: 2019-08-17 20:39
- * @Description: ${Description}
+ * @author : 龙万恒
+ * @date : 2019-08-17 20:39
  */
 public interface MenuMapper {
 
@@ -27,6 +26,14 @@ public interface MenuMapper {
      * @param menu
      */
     void update(Menu menu);
+
+
+    /**
+     * 批量删除功能
+     *
+     * @param ids
+     */
+    void delete(@Param("ids") List<Long> ids);
 
     /**
      * 获取所有菜单
