@@ -1,6 +1,5 @@
 package com.dragon.common.exception;
 
-import com.dragon.common.enums.ExceptionEnum;
 import com.dragon.common.enums.ResultCode;
 import lombok.Data;
 import org.apache.commons.lang3.StringUtils;
@@ -11,23 +10,17 @@ import org.apache.commons.lang3.StringUtils;
  * @Description: ${Description}
  */
 @Data
-public class DragonException extends RuntimeException{
+public class DragonException extends RuntimeException {
 
-    protected String code;
+    protected String code = "1";
 
-    protected String message;
+    protected String message = "success";
 
     protected ResultCode resultCode;
 
     protected Object data;
 
     public DragonException() {
-        ExceptionEnum exceptionEnum = ExceptionEnum.getByClazz(this.getClass());
-        if (exceptionEnum != null) {
-            resultCode = exceptionEnum.getResultCode();
-            code = exceptionEnum.getResultCode().code().toString();
-            message = exceptionEnum.getResultCode().message();
-        }
     }
 
     public DragonException(String message) {
@@ -44,7 +37,7 @@ public class DragonException extends RuntimeException{
     public DragonException(String msg, Throwable cause, Object... objects) {
         this();
         String format = StringUtils.replace(msg, "{}", "%s");
-        this.message= String.format(format, objects);
+        this.message = String.format(format, objects);
     }
 
     public DragonException(ResultCode resultCode, Object data) {
