@@ -4,18 +4,14 @@
   "data": [
     {
       "id": 1,
-      "name": "abc",
-      "age": 15
-    },
-    {
-      "id": 2,
-      "name": "asdasd",
-      "age": 14
-    },
-    {
-      "id": 3,
-      "name": "t436t323",
-      "age": 13
+      "roleName": "admin",
+      "createTime": 1566180419000,
+      "createUser": "admin",
+      "status": null,
+      "deleteFlag": 0,
+      "remark": "admin",
+      "updateTime": null,
+      "updateUser": null
     }
   ]
 }
